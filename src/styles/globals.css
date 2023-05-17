@@ -3,29 +3,29 @@
 @tailwind utilities;
 
 .headline {
-    @apply font-bold text-2xl lg:text-[2rem] lg:leading-10
+  @apply font-bold text-2xl lg:text-[2rem] lg:leading-10;
 }
 
 .subtitle-1 {
-    @apply font-bold text-sm lg:text-base
+  @apply font-bold text-sm lg:text-base;
 }
 
 .subtitle-2 {
-    @apply font-bold text-xs lg:text-base
+  @apply font-bold text-xs lg:text-base;
 }
 
 .subtitle-3 {
-    @apply font-bold text-[0.625rem] leading-3 lg:text-base
+  @apply font-bold text-[0.625rem] leading-3 lg:text-base;
 }
 
 .dropshadow-2dp {
-    @apply shadow-[0px_1px_3px_1px_rgba(0,_0,_0,_0.2)]
+  @apply shadow-[0px_1px_3px_1px_rgba(0,_0,_0,_0.2)];
 }
 
 .dropshadow-6dp {
-    @apply shadow-[0px_3px_12px_3px_rgba(0,_0,_0,_0.2)]
+  @apply shadow-[0px_3px_12px_3px_rgba(0,_0,_0,_0.2)];
 }
 
 .inner-shadow {
-    @apply shadow-[inset_0px_1px_3px_1px_rgba(0,_0,_0,_0.25)]
+  @apply shadow-[inset_0px_1px_3px_1px_rgba(0,_0,_0,_0.25)];
 }
