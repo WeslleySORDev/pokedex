@@ -17,3 +17,15 @@
 .subtitle-3 {
     @apply font-bold text-[0.625rem] leading-3 lg:text-base
 }
+
+.dropshadow-2dp {
+    @apply shadow-[0px_1px_3px_1px_rgba(0,_0,_0,_0.2)]
+}
+
+.dropshadow-6dp {
+    @apply shadow-[0px_3px_12px_3px_rgba(0,_0,_0,_0.2)]
+}
+
+.inner-shadow {
+    @apply shadow-[inset_0px_1px_3px_1px_rgba(0,_0,_0,_0.25)]
+}
