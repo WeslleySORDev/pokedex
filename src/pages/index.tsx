@@ -55,6 +55,10 @@ export default function Home() {
   }, [inView]);
   return (
     <main>
+      <p className="headline">headline</p>
+      <p className="subtitle-1">subtitle-1</p>
+      <p className="subtitle-2">subtitle-2</p>
+      <p className="subtitle-3">subtitle-3</p>
       {/* {status === "loading" ? (
         <p>Loading...</p>
       ) : (

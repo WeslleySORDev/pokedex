@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.headline {
+    @apply font-bold text-2xl lg:text-[2rem] lg:leading-10
+}
+
+.subtitle-1 {
+    @apply font-bold text-sm lg:text-base
+}
+
+.subtitle-2 {
+    @apply font-bold text-xs lg:text-base
+}
+
+.subtitle-3 {
+    @apply font-bold text-[0.625rem] leading-3 lg:text-base
+}
