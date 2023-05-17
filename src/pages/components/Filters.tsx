@@ -11,10 +11,10 @@ export function Filters() {
     setHoveringButton(value);
   };
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center gap-4 justify-between">
       <form
         action="submit"
-        className={`rounded-2xl py-2 pl-3 pr-4 gap-2 flex items-center ${
+        className={`rounded-2xl py-2 pl-3 pr-4 gap-2 w-full flex items-center ${
           inputValue.length > 0 ? "dropshadow-2dp" : "inner-shadow"
         } bg-grayscale-white`}
       >
@@ -31,7 +31,7 @@ export function Filters() {
           onChange={(e) => handleInputValue(e.currentTarget.value)}
           type="text"
           placeholder="Search"
-          className="subtitle-3 text-grayscale-dark placeholder:text-grayscale-medium focus:outline-none bg-grayscale-white"
+          className="body-3 text-grayscale-dark placeholder:text-grayscale-medium focus:outline-none bg-grayscale-white"
         />
         {inputValue.length > 0 ? (
           <button className="ml-auto" onClick={() => handleInputValue("")}>

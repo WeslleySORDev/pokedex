@@ -15,7 +15,7 @@ export default function Document() {
           rel="stylesheet"
         />
       </Head>
-      <body className="font-Poppins">
+      <body className="font-Poppins p-1 bg-identity-primary">
         <Main />
         <NextScript />
       </body>

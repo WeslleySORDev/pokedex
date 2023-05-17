@@ -25,7 +25,7 @@ export function PokemonType({ name }: PokemonTypeProps) {
   };
   return (
     <span
-      className={`subtitle-3 px-2 py-[0.125rem] rounded-[0.625rem] ${pokemonBgVariants[name]} text-grayscale-white`}
+      className={`body-3 px-2 py-[0.125rem] rounded-[0.625rem] ${pokemonBgVariants[name]} text-grayscale-white`}
     >
       {name.charAt(0).toUpperCase() + name.slice(1)}
     </span>
