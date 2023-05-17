@@ -4,6 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { instance } from "@/services/instance";
 import { PaginationPokemon } from "@/types/pagination";
 import { Pokemon } from "@/types/pokemon";
+import { PokemonType } from "./components/PokemonType";
 
 type PokemonListAndPaginationProp = {
   pokemons: Pokemon[];
@@ -55,6 +56,11 @@ export default function Home() {
   }, [inView]);
   return (
     <main>
+      <PokemonType name="normal"/>
+      <PokemonType name="fire"/>
+      <PokemonType name="electric"/>
+      <PokemonType name="poison"/>
+      <PokemonType name="psychic"/>
       {/* {status === "loading" ? (
         <p>Loading...</p>
       ) : (
