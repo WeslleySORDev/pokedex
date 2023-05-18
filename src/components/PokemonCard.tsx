@@ -10,12 +10,13 @@ export function PokemonCard({ id, name }: PokemonCardProps) {
     return id;
   };
   return (
-    <article className="bg-grayscale-white dropshadow-2dp rounded-lg pt-1 flex flex-col w-[6.5rem] h-[6.5rem]">
+    <article className="bg-grayscale-white dropshadow-2dp rounded-lg pt-1 flex flex-col w-[6.5rem] h-[6.5rem] lg:h-[7.25rem] lg:w-[7.25rem]">
       <h2 className="caption text-grayscale-medium text-right mr-2">
         #{formattedID()}
       </h2>
       <div className="relative pb-1 px-2 pt-6 rounded-[7px] flex justify-center mt-auto bg-grayscale-background w-full">
         <img
+          loading="lazy"
           className="absolute -top-12 left-[1.125rem] w-[4.5rem] h-[4.5rem]"
           src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${formattedID()}.png`}
           alt=""

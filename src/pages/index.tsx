@@ -4,10 +4,10 @@ import { useInView } from "react-intersection-observer";
 import { instance } from "@/services/instance";
 import { PaginationPokemon } from "@/types/pagination";
 import { Pokemon } from "@/types/pokemon";
-import { PokemonCard } from "./components/PokemonCard";
-import { Filters } from "./components/Filters";
+import { PokemonCard } from "../components/PokemonCard";
+import { Filters } from "../components/Filters";
 
-const LIMIT_POKEMON_FETCH_AT_A_TIME = 15;
+const LIMIT_POKEMON_FETCH_AT_A_TIME = 10;
 
 type PokemonListAndPaginationProp = {
   pokemons: Pokemon[];
@@ -17,7 +17,6 @@ type PokemonListAndPaginationProp = {
 
 export default function Home() {
   const { ref, inView } = useInView();
-  const [pokemonList, setPokemonList] = useState<Pokemon[]>([]);
   const { status, data, isFetching, isFetchingNextPage, fetchNextPage } =
     useInfiniteQuery(
       ["pokemons-fetch"],
@@ -42,7 +41,6 @@ export default function Home() {
           next: PaginationFetch.next,
           previous: PaginationFetch.previous,
         };
-        console.log(data);
         return data;
       },
       {
@@ -55,9 +53,9 @@ export default function Home() {
     if (inView) {
       fetchNextPage();
     }
-  }, [inView]);
+  }, [inView, data]);
   return (
-    <>
+    <div className="flex flex-col min-h-[calc(100vh-0.5rem)]">
       <header className="flex flex-col gap-3 px-3 pt-3 mb-6">
         <div className="flex items-center gap-4">
           <svg
@@ -77,7 +75,7 @@ export default function Home() {
         </div>
         <Filters />
       </header>
-      <main className="px-3 py-6 bg-grayscale-white inner-shadow rounded-lg flex-1">
+      <main className="px-3 py-6 bg-grayscale-white inner-shadow rounded-lg flex-1 max-h-full overflow-y-auto">
         <div className="flex flex-wrap justify-center gap-2">
           {data?.pages.map((page) =>
             page.pokemons.map((pokemon) => (
@@ -90,13 +88,13 @@ export default function Home() {
           )}
         </div>
         <div
-          className="mx-auto w-fit mt-4"
+          className="mx-auto w-fit mt-4 invisible"
           aria-label="react-intersection-observer-div"
           ref={ref}
         >
-          {isFetchingNextPage ? "Loading..." : null}
+          This is a react-intersection-observer-div to control infinite scroll
         </div>
       </main>
-    </>
+    </div>
   );
 }
