@@ -18,10 +18,14 @@ export function PokemonCard({ id, name }: PokemonCardProps) {
         <img
           loading="lazy"
           className="absolute -top-12 left-[1.125rem] w-[4.5rem] h-[4.5rem]"
+          onError={(event) => {
+            event.currentTarget.src = "/assets/images/image-not-found.svg";
+            event.currentTarget.onerror = null;
+          }}
           src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${formattedID()}.png`}
           alt=""
         />
-        <span className="text-grayscale-dark body-3">
+        <span className="text-grayscale-dark body-3 line-clamp-1 text-center">
           {name.charAt(0).toUpperCase() + name.slice(1)}
         </span>
       </div>

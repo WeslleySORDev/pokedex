@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
 import { instance } from "@/services/instance";
@@ -7,7 +7,7 @@ import { Pokemon } from "@/types/pokemon";
 import { PokemonCard } from "../components/PokemonCard";
 import { Filters } from "../components/Filters";
 
-const LIMIT_POKEMON_FETCH_AT_A_TIME = 10;
+const LIMIT_POKEMON_FETCH_AT_A_TIME = 100;
 
 type PokemonListAndPaginationProp = {
   pokemons: Pokemon[];
@@ -29,7 +29,10 @@ export default function Home() {
         let Promises: Promise<Pokemon>[] = [];
         const PaginationFetch = await instance
           .get<PaginationPokemon>(pageParam)
-          .then((res) => res.data);
+          .then((res) => {
+            console.log(res.data);
+            return res.data;
+          });
         PaginationFetch.results.map((result) =>
           Promises.push(
             instance.get<Pokemon>(result.url).then((res) => res.data)
@@ -55,7 +58,7 @@ export default function Home() {
     }
   }, [inView, data]);
   return (
-    <div className="flex flex-col min-h-[calc(100vh-0.5rem)]">
+    <div className="flex flex-col max-h-[calc(100vh-0.5rem)]">
       <header className="flex flex-col gap-3 px-3 pt-3 mb-6">
         <div className="flex items-center gap-4">
           <svg
@@ -78,13 +81,17 @@ export default function Home() {
       <main className="px-3 py-6 bg-grayscale-white inner-shadow rounded-lg flex-1 max-h-full overflow-y-auto">
         <div className="flex flex-wrap justify-center gap-2">
           {data?.pages.map((page) =>
-            page.pokemons.map((pokemon) => (
-              <PokemonCard
-                key={pokemon.id + " - " + pokemon.name}
-                id={pokemon.id}
-                name={pokemon.name}
-              />
-            ))
+            page.pokemons.map((pokemon) => {
+              if (pokemon.id <= 1008) {
+                return (
+                  <PokemonCard
+                    key={pokemon.id + " - " + pokemon.name}
+                    id={pokemon.id}
+                    name={pokemon.name}
+                  />
+                );
+              }
+            })
           )}
         </div>
         <div
