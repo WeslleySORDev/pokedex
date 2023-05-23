@@ -1,18 +1,25 @@
 import { useEffect } from "react";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useInView } from "react-intersection-observer";
-import { instance } from "@/services/instance";
-import { PaginationPokemon } from "@/types/pagination";
 import { Pokemon } from "@/types/pokemon";
 import { PokemonCard } from "../components/PokemonCard";
 import { Filters } from "../components/Filters";
 
-const LIMIT_POKEMON_FETCH_AT_A_TIME = 100;
+import Pokedex from "pokedex-promise-v2";
+
+const options = {
+  versionPath: "/api/v2/",
+  cacheLimit: 100 * 1000, // 100s
+  timeout: 5 * 1000, // 5s
+};
+const P = new Pokedex(options);
+
+const LIMIT_POKEMON_FETCH_AT_A_TIME = 50;
 
 type PokemonListAndPaginationProp = {
   pokemons: Pokemon[];
-  next: string;
-  previous: string;
+  next: string | null;
+  previous: string | null;
 };
 
 export default function Home() {
@@ -25,25 +32,27 @@ export default function Home() {
           LIMIT_POKEMON_FETCH_AT_A_TIME +
           "&offset=0",
       }) => {
-        let PokemonList: Pokemon[] = [];
-        let Promises: Promise<Pokemon>[] = [];
-        const PaginationFetch = await instance
-          .get<PaginationPokemon>(pageParam)
-          .then((res) => {
-            console.log(res.data);
-            return res.data;
-          });
-        PaginationFetch.results.map((result) =>
-          Promises.push(
-            instance.get<Pokemon>(result.url).then((res) => res.data)
-          )
-        );
-        await Promise.all(Promises).then((values) => (PokemonList = values));
-        const data: PokemonListAndPaginationProp = {
-          pokemons: PokemonList,
-          next: PaginationFetch.next,
-          previous: PaginationFetch.previous,
+        var data: PokemonListAndPaginationProp = {
+          next: "",
+          previous: "",
+          pokemons: [],
         };
+        await P.getPokemonsList({
+          limit: LIMIT_POKEMON_FETCH_AT_A_TIME,
+          offset: pageParam.toString().split("offset=")[1],
+        }).then((response) => {
+          data.next = response.next;
+          data.previous = response.previous;
+          response.results.map((pokemon) => {
+            P.getPokemonByName(pokemon.name)
+              .then((response) => {
+                data.pokemons.push(response as any);
+              })
+              .catch((error) => {
+                console.log("There was an ERROR: ", error);
+              });
+          });
+        });
         return data;
       },
       {
@@ -81,7 +90,7 @@ export default function Home() {
       <main className="px-3 py-6 bg-grayscale-white inner-shadow rounded-lg flex-1 max-h-full overflow-y-auto">
         <div className="flex flex-wrap justify-center gap-2">
           {data?.pages.map((page) =>
-            page.pokemons.map((pokemon) => {
+            page.pokemons.sort((a, b) => a.id - b.id).map((pokemon) => {
               if (pokemon.id <= 1008) {
                 return (
                   <PokemonCard
