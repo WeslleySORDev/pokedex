@@ -14,6 +14,11 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
           rel="stylesheet"
         />
+        <link
+          rel="icon"
+          type="image/png"
+          href="/assets/images/pokebola-16.png"
+        />
       </Head>
       <body className="font-Poppins p-1 bg-identity-primary min-h-screen">
         <Main />
