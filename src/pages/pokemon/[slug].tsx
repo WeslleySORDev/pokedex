@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { PokeballSVG } from "@/components/Pokemon/PokeballSVG";
 import { PokemonAttribute } from "@/components/Pokemon/Attribute";
 import { PokemonBaseStats } from "@/components/Pokemon/BaseStats";
+import Head from "next/head";
 
 const pokemonBgVariants: any = {
   bug: "bg-pokemon-type-bug",
@@ -94,6 +95,10 @@ export default function PokemonPage() {
   }, [pokemon]);
   if (Object.keys(pokemon).length === 0) return null;
   return (
+    <>
+    <Head>
+      <title>Pokedex - {pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</title>
+    </Head>
     <div
       className={`relative flex flex-col ${
         pokemonBgVariants[pokemon.types[0].type.name]
@@ -212,6 +217,6 @@ export default function PokemonPage() {
           />
         </div>
       </main>
-    </div>
+    </div></>
   );
 }
