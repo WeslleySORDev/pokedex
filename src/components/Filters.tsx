@@ -11,15 +11,15 @@ export function Filters() {
     setHoveringButton(value);
   };
   return (
-    <div className="flex items-center gap-4 justify-between">
+    <div className="flex items-center justify-between gap-4">
       <form
         action="submit"
-        className={`rounded-2xl py-2 pl-3 pr-4 gap-2 w-full flex items-center ${
+        className={`flex w-full items-center gap-2 rounded-2xl py-2 pl-3 pr-4 ${
           inputValue.length > 0 ? "dropshadow-2dp" : "inner-shadow"
         } bg-grayscale-white`}
       >
         <svg
-          className="fill-identity-primary w-4 h-4"
+          className="h-4 w-4 fill-identity-primary"
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
@@ -31,12 +31,12 @@ export function Filters() {
           onChange={(e) => handleInputValue(e.currentTarget.value)}
           type="text"
           placeholder="Search"
-          className="body-3 text-grayscale-dark placeholder:text-grayscale-medium focus:outline-none bg-grayscale-white"
+          className="body-3 bg-grayscale-white text-grayscale-dark placeholder:text-grayscale-medium focus:outline-none"
         />
         {inputValue.length > 0 ? (
           <button className="ml-auto" onClick={() => handleInputValue("")}>
             <svg
-              className="fill-identity-primary w-4 h-4"
+              className="h-4 w-4 fill-identity-primary"
               viewBox="0 0 48 48"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -54,7 +54,7 @@ export function Filters() {
         } bg-grayscale-white`}
       >
         <svg
-          className="fill-identity-primary w-4 h-4"
+          className="h-4 w-4 fill-identity-primary"
           viewBox="0 0 48 48"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"

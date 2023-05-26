@@ -1,5 +1,5 @@
 import { Pokemon } from "pokedex-promise-v2";
-import { PokemonCard } from "./PokemonCard";
+import { PokemonCard } from "./Card";
 import { memo } from "react";
 
 type PokemonListProps = {

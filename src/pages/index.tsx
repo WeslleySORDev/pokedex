@@ -1,9 +1,9 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
-import { Filters } from "../components/Filters";
+import { Filters } from "@/components/Filters";
 
 import Pokedex, { Pokemon } from "pokedex-promise-v2";
 import Head from "next/head";
-import PokemonList from "@/components/PokemonList";
+import PokemonList from "@/components/Pokemon/List";
 
 const options = {
   versionPath: "/api/v2/",
@@ -60,11 +60,11 @@ export default function Home() {
       <Head>
         <title>Pokedex - Home Page</title>
       </Head>
-      <div className="flex flex-col px-4 py-1 min-h-[calc(100vh-0.5rem)] max-h-[calc(100vh-0.5rem)] bg-identity-primary">
-        <header className="flex flex-col gap-3 pt-3 mb-6">
+      <div className="flex max-h-[calc(100vh-0.5rem)] min-h-[calc(100vh-0.5rem)] flex-col bg-identity-primary px-4 py-1">
+        <header className="mb-6 flex flex-col gap-3 pt-3">
           <div className="flex items-center gap-4">
             <svg
-              className="fill-grayscale-white w-6 h-6"
+              className="h-6 w-6 fill-grayscale-white"
               viewBox="0 0 48 48"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@ export default function Home() {
           </div>
           <Filters />
         </header>
-        <main className="pt-6 bg-grayscale-white inner-shadow rounded-lg flex flex-col flex-1 overflow-y-auto">
+        <main className="inner-shadow flex flex-1 flex-col overflow-y-auto rounded-lg bg-grayscale-white pt-6">
           <div className="flex flex-wrap justify-center gap-2">
             {data &&
               data.pages.map((page) => (
@@ -91,7 +91,7 @@ export default function Home() {
             {hasNextPage ? (
               <button
                 disabled={isFetchingNextPage}
-                className="w-3/4 px-2 py-4 bg-identity-primary text-grayscale-white font-semibold rounded-md mx-auto"
+                className="mx-auto w-3/4 rounded-md bg-identity-primary px-2 py-4 font-semibold text-grayscale-white"
                 onClick={() => fetchNextPage()}
               >
                 {isFetchingNextPage

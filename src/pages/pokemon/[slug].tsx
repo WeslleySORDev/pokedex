@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { PokemonType } from "../../components/PokemonType";
+import { PokemonType } from "../../components/Pokemon/Type";
 import Pokedex, { Pokemon } from "pokedex-promise-v2";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
@@ -34,9 +34,9 @@ export default function PokemonPage() {
   }, [slug]);
   if (Object.keys(pokemon).length === 0) return null;
   return (
-    <div className="flex flex-col relative min-h-screen max-h-screen bg-pokemon-type-grass p-1">
+    <div className="relative flex max-h-screen min-h-screen flex-col bg-pokemon-type-grass p-1">
       <svg
-        className="absolute z-10 right-1 top-1"
+        className="absolute right-1 top-1 z-10"
         width="208"
         height="208"
         viewBox="0 0 208 208"
@@ -56,7 +56,7 @@ export default function PokemonPage() {
           />
         </g>
       </svg>
-      <header className="p-5 flex items-center gap-2 text-grayscale-white">
+      <header className="flex items-center gap-2 p-5 text-grayscale-white">
         <Link href="/">
           <svg
             width="32"
@@ -121,11 +121,11 @@ export default function PokemonPage() {
         </h1>
         <span className="subtitle-2">#{formattedID()}</span>
       </header>
-      <main className="flex flex-col gap-4 bg-grayscale-white rounded-lg inner-shadow flex-1 relative mt-36 px-5">
-        <div className="flex flex-col items-center absolute -top-36 left-0 right-0">
+      <main className="inner-shadow relative mt-36 flex flex-1 flex-col gap-4 rounded-lg bg-grayscale-white px-5">
+        <div className="absolute -top-36 left-0 right-0 flex flex-col items-center">
           <img
             loading="lazy"
-            className="w-52 h-52"
+            className="h-52 w-52"
             src={`https://assets.pokemon.com/assets/cms2/img/pokedex/full/${formattedID()}.png`}
             alt=""
           />
@@ -135,13 +135,13 @@ export default function PokemonPage() {
             ))}
           </div>
         </div>
-        <div className="flex flex-col gap-4 mt-24">
+        <div className="mt-24 flex flex-col gap-4">
           <span className="subtitle-1 text-center text-pokemon-type-grass">
             About
           </span>
           <div className="flex items-center justify-center">
-            <div className="flex flex-col px-6 py-2 gap-3">
-              <div className="flex gap-2 items-center">
+            <div className="flex flex-col gap-3 px-6 py-2">
+              <div className="flex items-center gap-2">
                 <svg
                   width="17"
                   height="16"
@@ -154,11 +154,11 @@ export default function PokemonPage() {
                     fill="#1D1D1D"
                   />
                 </svg>
-                <span className="text-grayscale-dark body-3">
+                <span className="body-3 text-grayscale-dark">
                   {pokemon.weight} kg
                 </span>
               </div>
-              <span className="text-grayscale-medium caption text-center">
+              <span className="caption text-center text-grayscale-medium">
                 Weight
               </span>
             </div>
@@ -171,8 +171,8 @@ export default function PokemonPage() {
             >
               <rect x="0.333252" width="1" height="48" fill="#E0E0E0" />
             </svg>
-            <div className="flex flex-col px-6 py-2 gap-3">
-              <div className="flex gap-2 items-center">
+            <div className="flex flex-col gap-3 px-6 py-2">
+              <div className="flex items-center gap-2">
                 <svg
                   width="17"
                   height="16"
@@ -186,11 +186,11 @@ export default function PokemonPage() {
                   />
                 </svg>
 
-                <span className="text-grayscale-dark body-3">
+                <span className="body-3 text-grayscale-dark">
                   {pokemon.height} m
                 </span>
               </div>
-              <span className="text-grayscale-medium caption text-center">
+              <span className="caption text-center text-grayscale-medium">
                 Height
               </span>
             </div>
@@ -203,14 +203,14 @@ export default function PokemonPage() {
             >
               <rect x="0.333252" width="1" height="48" fill="#E0E0E0" />
             </svg>
-            <div className="flex flex-col px-6 py-2 gap-3">
-              <div className="flex flex-col gap-2 justify-center items-center">
+            <div className="flex flex-col gap-3 px-6 py-2">
+              <div className="flex flex-col items-center justify-center gap-2">
                 {pokemon.abilities.map((res, index) => {
                   if (index <= 1) {
                     return (
                       <span
                         key={res.ability.name}
-                        className="text-grayscale-dark body-3"
+                        className="body-3 text-grayscale-dark"
                       >
                         {res.ability.name.charAt(0).toUpperCase() +
                           res.ability.name.slice(1)}
@@ -219,13 +219,13 @@ export default function PokemonPage() {
                   }
                 })}
               </div>
-              <span className="text-grayscale-medium caption text-center">
+              <span className="caption text-center text-grayscale-medium">
                 Moves
               </span>
             </div>
           </div>
         </div>
-        <span className="text-grayscale-dark body-3">
+        <span className="body-3 text-grayscale-dark">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
           efficitur libero eu libero auctor, ut aliquam ex lacinia. Donec
           bibendum sapien libero, vitae interdum leo condimentum sed. Etiam ut

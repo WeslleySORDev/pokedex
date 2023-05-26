@@ -15,15 +15,15 @@ export function PokemonCard({ id, name, loading = false }: PokemonCardProps) {
   return (
     <Link
       href={`/pokemon/${name}`}
-      className="bg-grayscale-white dropshadow-2dp rounded-lg pt-1 flex flex-col w-[6.5rem] h-[6.5rem] lg:h-[7.25rem] lg:w-[7.25rem]"
+      className="dropshadow-2dp flex h-[6.5rem] w-[6.5rem] flex-col rounded-lg bg-grayscale-white pt-1 lg:h-[7.25rem] lg:w-[7.25rem]"
     >
-      <h2 className="caption text-grayscale-medium text-right mr-2">
+      <h2 className="caption mr-2 text-right text-grayscale-medium">
         #{loading ? "999" : formattedID()}
       </h2>
-      <div className="relative pb-1 px-2 pt-6 rounded-[7px] flex justify-center mt-auto bg-grayscale-background w-full">
+      <div className="relative mt-auto flex w-full justify-center rounded-[7px] bg-grayscale-background px-2 pb-1 pt-6">
         <img
           loading="lazy"
-          className="absolute -top-12 left-[1.125rem] w-[4.5rem] h-[4.5rem]"
+          className="absolute -top-12 left-[1.125rem] h-[4.5rem] w-[4.5rem]"
           src={
             loading
               ? "/assets/images/image-not-found.svg"
@@ -31,7 +31,7 @@ export function PokemonCard({ id, name, loading = false }: PokemonCardProps) {
           }
           alt=""
         />
-        <span className="text-grayscale-dark body-3 line-clamp-1 text-center">
+        <span className="body-3 line-clamp-1 text-center text-grayscale-dark">
           {loading
             ? "Pokemon Name"
             : name
