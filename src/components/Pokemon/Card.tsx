@@ -47,7 +47,7 @@ export function PokemonCard({ id, name, loading = false }: PokemonCardProps) {
               alt=""
             />
             <span className="body-3 line-clamp-1 text-center text-grayscale-dark">
-              "Pokemon Name"
+              Pokemon Name
             </span>
           </div>
         </div>
