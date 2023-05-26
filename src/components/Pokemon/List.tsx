@@ -7,7 +7,6 @@ type PokemonListProps = {
 };
 
 const PokemonList = ({ pokemons }: PokemonListProps) => {
-  console.log("child render");
   return (
     <>
       {pokemons
