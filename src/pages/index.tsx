@@ -12,7 +12,7 @@ const options = {
 };
 const P = new Pokedex(options);
 
-const LIMIT_POKEMON_FETCH_AT_A_TIME = 50;
+const LIMIT_POKEMON_FETCH_AT_A_TIME = 25;
 
 type PokemonListAndPaginationProp = {
   pokemons: Pokemon[];
@@ -82,10 +82,12 @@ export default function Home() {
         </header>
         <main className="inner-shadow flex flex-1 flex-col overflow-y-auto rounded-lg bg-grayscale-white pt-6">
           <div className="flex flex-wrap justify-center gap-2">
-            {data &&
-              data.pages.map((page) => (
-                <PokemonList pokemons={page.pokemons} />
-              ))}
+            {!isLoading
+              ? data &&
+                data.pages.map((page) => (
+                  <PokemonList key={page.next} pokemons={page.pokemons} />
+                ))
+              : null}
           </div>
           <div className="my-6 flex items-center">
             {hasNextPage ? (
