@@ -20,7 +20,7 @@ export default function Document() {
           href="/assets/images/pokebola-16.png"
         />
       </Head>
-      <body className="font-Poppins p-1 bg-identity-primary min-h-screen">
+      <body className="font-Poppins p-1 bg-identity-primary max-h-screen">
         <Main />
         <NextScript />
       </body>
