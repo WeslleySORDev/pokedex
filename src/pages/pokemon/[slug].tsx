@@ -84,10 +84,9 @@ export default function PokemonPage() {
       fetch("https://pokeapi.co/api/v2/pokemon-species/" + pokemon.name)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           setDescription(
             data.flavor_text_entries.filter(
-              (flavor) => flavor.language.name === "en"
+              (flavor: any) => flavor.language.name === "en"
             )[0].flavor_text
           );
         });
