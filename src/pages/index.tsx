@@ -4,6 +4,7 @@ import { Filters } from "@/components/Filters";
 import Pokedex, { Pokemon } from "pokedex-promise-v2";
 import Head from "next/head";
 import PokemonList from "@/components/Pokemon/List";
+import { PokemonCard } from "@/components/Pokemon/Card";
 
 const options = {
   versionPath: "/api/v2/",
@@ -12,7 +13,7 @@ const options = {
 };
 const P = new Pokedex(options);
 
-const LIMIT_POKEMON_FETCH_AT_A_TIME = 25;
+const LIMIT_POKEMON_FETCH_AT_A_TIME = 50;
 
 type PokemonListAndPaginationProp = {
   pokemons: Pokemon[];
@@ -87,7 +88,9 @@ export default function Home() {
                 data.pages.map((page) => (
                   <PokemonList key={page.next} pokemons={page.pokemons} />
                 ))
-              : null}
+              : [...Array(LIMIT_POKEMON_FETCH_AT_A_TIME)].map((_, index) => {
+                  return <PokemonCard key={index} loading />;
+                })}
           </div>
           <div className="my-6 flex items-center">
             {hasNextPage ? (

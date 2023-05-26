@@ -30,11 +30,12 @@ export function Filters() {
           value={inputValue}
           onChange={(e) => handleInputValue(e.currentTarget.value)}
           type="text"
-          placeholder="Search"
+          disabled
+          placeholder="Search (TODO)"
           className="body-3 bg-grayscale-white text-grayscale-dark placeholder:text-grayscale-medium focus:outline-none"
         />
         {inputValue.length > 0 ? (
-          <button className="ml-auto" onClick={() => handleInputValue("")}>
+          <button disabled className="ml-auto" onClick={() => handleInputValue("")}>
             <svg
               className="h-4 w-4 fill-identity-primary"
               viewBox="0 0 48 48"

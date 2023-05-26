@@ -62,6 +62,7 @@ export default function PokemonPage() {
   const { slug } = router.query;
 
   const [pokemon, setPokemon] = useState<Pokemon>({} as Pokemon);
+  const [description, setDescription] = useState("");
   const formattedID = () => {
     if (pokemon.id && pokemon.id.toString().length === 1)
       return "00" + pokemon.id;
@@ -76,6 +77,21 @@ export default function PokemonPage() {
       });
     }
   }, [slug]);
+
+  useEffect(() => {
+    if (pokemon.name) {
+      fetch("https://pokeapi.co/api/v2/pokemon-species/" + pokemon.name)
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          setDescription(
+            data.flavor_text_entries.filter(
+              (flavor) => flavor.language.name === "en"
+            )[0].flavor_text
+          );
+        });
+    }
+  }, [pokemon]);
   if (Object.keys(pokemon).length === 0) return null;
   return (
     <div
@@ -178,11 +194,9 @@ export default function PokemonPage() {
           />
         </div>
         <span className="body-3 text-grayscale-dark">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-          efficitur libero eu libero auctor, ut aliquam ex lacinia. Donec
-          bibendum sapien libero, vitae interdum leo condimentum sed. Etiam ut
-          diam porttitor, gravida odio in, viverra nisi. Nullam leo augue,
-          ultricies eu sem quis, tempus bibendum turpis.
+          <div
+            dangerouslySetInnerHTML={{ __html: description.replace("\f", " ") }}
+          />
         </span>
         <div className="flex w-full flex-col gap-4">
           <span
