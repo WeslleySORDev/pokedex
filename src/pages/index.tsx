@@ -95,7 +95,7 @@ export default function Home() {
               >
                 <svg
                   aria-hidden="true"
-                  className="mr-2 inline h-10 w-10 animate-spin fill-pokemon-type-dragon text-grayscale-medium"
+                  className="mr-2 inline h-10 w-10 animate-spin fill-identity-primary text-grayscale-dark"
                   viewBox="0 0 100 101"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
