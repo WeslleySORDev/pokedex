@@ -60,7 +60,7 @@ export default function Home() {
       <Head>
         <title>Pokedex - Home Page</title>
       </Head>
-      <div className="flex flex-col px-3 max-h-[calc(100vh-0.5rem)]">
+      <div className="flex flex-col px-4 py-1 min-h-[calc(100vh-0.5rem)] max-h-[calc(100vh-0.5rem)] bg-identity-primary">
         <header className="flex flex-col gap-3 pt-3 mb-6">
           <div className="flex items-center gap-4">
             <svg
@@ -80,7 +80,7 @@ export default function Home() {
           </div>
           <Filters />
         </header>
-        <main className="pt-6 bg-grayscale-white inner-shadow rounded-lg flex flex-col overflow-y-auto">
+        <main className="pt-6 bg-grayscale-white inner-shadow rounded-lg flex flex-col flex-1 overflow-y-auto">
           <div className="flex flex-wrap justify-center gap-2">
             {data &&
               data.pages.map((page) => (
