@@ -19,10 +19,10 @@ const HeaderText: React.FC<HeaderTextProps> = ({
       "text-[12px] leading-[16px]": as === "subtitle-2",
       "text-[10px] leading-[16px]": as === "subtitle-3",
     },
-    (className = "font-bold")
+    className
   );
 
-  return <p className={headerTextClass}>{children}</p>;
+  return <p className={`font-bold ${headerTextClass}`}>{children}</p>;
 };
 
 export default HeaderText;
