@@ -1,3 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .header {
+    font-weight: bold;
+  }
+  .headline {
+    font-size: 24px;
+    line-height: 32px;
+  }
+  .subtitle-1 {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .subtitle-2 {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .subtitle-3 {
+    font-size: 10px;
+    line-height: 16px;
+  }
+  .body {
+    font-weight: normal;
+  }
+  .caption {
+    font-size: 8px;
+    line-height: 12px;
+  }
+  .body-1 {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .body-2 {
+    font-size: 12px;
+    line-height: 16px;
+  }
+  .body-3 {
+    font-size: 10px;
+    line-height: 16px;
+  }
+}
