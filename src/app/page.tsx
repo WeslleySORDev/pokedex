@@ -4,6 +4,8 @@ import { split_array_into_chunks } from "./utils/array";
 import allPokemonNameAndUrlFromPokeApi from "./utils/all-pokemon-name-and-url-from-poke-api.json";
 import { instance } from "./services/axios";
 import { useQuery } from "@tanstack/react-query";
+import HeaderText from "./components/ui/header-text";
+import BodyText from "./components/ui/body-text";
 
 const MAX_ITEMS_ON_PAGE = 20;
 
@@ -40,7 +42,15 @@ export default function Home() {
   }, []);
   return (
     <div>
-      {isPending ? (
+      <HeaderText>headline</HeaderText>
+      <HeaderText as="subtitle-1">subtitle-1</HeaderText>
+      <HeaderText as="subtitle-2">subtitle-2</HeaderText>
+      <HeaderText as="subtitle-3">subtitle-3</HeaderText>
+      <BodyText>caption</BodyText>
+      <BodyText as="body-1">body-1</BodyText>
+      <BodyText as="body-2">body-2</BodyText>
+      <BodyText as="body-3">body-3</BodyText>
+      {/* {isPending ? (
         <div>Loading...</div>
       ) : isError ? (
         <div>Error: {error.message}</div>
@@ -65,7 +75,7 @@ export default function Home() {
       >
         Next Page
       </button>
-      {isFetching ? <span> Loading...</span> : null}
+      {isFetching ? <span> Loading...</span> : null} */}
     </div>
   );
 }
