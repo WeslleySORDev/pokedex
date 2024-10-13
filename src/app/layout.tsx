@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import "./globals.css";
 import { QueryClientProviderWrapper } from "./components/query-client-provider-wrapper";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Pokedex",
