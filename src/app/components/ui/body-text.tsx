@@ -19,10 +19,10 @@ const BodyText: React.FC<BodyTextProps> = ({
       "text-[12px] leading-[16px]": as === "body-2",
       "text-[10px] leading-[16px]": as === "body-3",
     },
-    (className = "font-normal")
+    className 
   );
 
-  return <p className={bodyTextClass}>{children}</p>;
+  return <p className={`font-normal ${bodyTextClass}`}>{children}</p>;
 };
 
 export default BodyText;
