@@ -1,6 +1,6 @@
 export const split_array_into_chunks = (
   array: string[],
-  size: number
+  size: number,
 ): string[][] => {
   const result: string[][] = [];
   for (let i = 0; i < array.length; i += size) {

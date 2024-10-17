@@ -1,7 +1,7 @@
 import React from "react";
 import clsx from "clsx";
 
-import HeaderText from "./header-text";
+import HeaderText from "./head-text";
 
 interface PokemonTypeProps {
   children: React.ReactNode;
@@ -53,11 +53,14 @@ const PokemonType: React.FC<PokemonTypeProps> = ({
       "bg-[#b7b9d0]": as === "steel",
       "bg-[#6493eb]": as === "water",
     },
-    className
+    className,
   );
 
   return (
-    <HeaderText as="subtitle-3" className={`text-white capitalize w-16 px-2 py-[2px] text-center rounded-[10px] ${pokemonTypeClass}`}>
+    <HeaderText
+      as="subtitle-3"
+      className={`w-16 rounded-[10px] px-2 py-[2px] text-center capitalize text-white ${pokemonTypeClass}`}
+    >
       {children}
     </HeaderText>
   );
