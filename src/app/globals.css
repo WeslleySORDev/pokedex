@@ -4,6 +4,6 @@
 
 @layer components {
     body {
-        @apply bg-primary min-h-screen p-1
+        @apply bg-primary min-h-dvh w-dvw
     }
 }

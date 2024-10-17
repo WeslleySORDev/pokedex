@@ -6,12 +6,14 @@ import { instance } from "./services/axios";
 import { useQuery } from "@tanstack/react-query";
 import { PokemonCard } from "./components/home-page/pokemon-card";
 import { Pagination } from "./components/home-page/pagination";
+import { PokemonCardList } from "./components/home-page/pokemon-card-list";
+import { Header } from "./components/header/header";
 
 const MAX_ITEMS_ON_PAGE = 20;
 // <PokemonType as={pokemon.types[0].type.name} key={pokemon.id}>{pokemon.types[0].type.name}</PokemonType>
 
 export default function Home() {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const { isPending, isError, error, data } = useQuery({
     queryKey: ["pokemons", page],
     queryFn: async () => await fetchPokemonsByPage(page),
@@ -21,8 +23,8 @@ export default function Home() {
     MAX_ITEMS_ON_PAGE,
   );
 
-  const fetchPokemonsByPage = async (page = 0) => {
-    const actualPagePokemons = all_pokemon_name_divided_by_pages[page];
+  const fetchPokemonsByPage = async (page = 1) => {
+    const actualPagePokemons = all_pokemon_name_divided_by_pages[page - 1];
     const promiseArray = actualPagePokemons.map((pokemon) =>
       instance.get(pokemon),
     );
@@ -31,7 +33,6 @@ export default function Home() {
         const fulfilledresults = values
           .filter((value) => value.status === "fulfilled")
           .map((value) => value.value.data);
-        console.log(fulfilledresults[0]);
         return fulfilledresults;
       },
     );
@@ -39,25 +40,29 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col">
-      <main className="max-h-[calc(100dvh-216.44px)] min-h-[calc(100dvh-216.44px)] overflow-y-auto">
-        <div className="mx-1 mb-1 flex flex-wrap place-content-center gap-2 rounded-lg bg-grayscale-white px-3 py-6 shadow-inner_2dp">
+    <div className="mx-auto flex max-w-screen-md flex-col rounded p-1">
+      <Header />
+      <main className="flex flex-col">
+        <div className="max-h-[calc(100dvh-170.44px)] overflow-y-auto rounded-lg bg-grayscale-white px-3 py-6 shadow-inner_2dp">
           {isPending ? (
-            <span>Loading...</span>
+            <div className="flex h-[calc(100dvh-170.44px)] items-center justify-center">
+              <span>Loading...</span>
+            </div>
           ) : isError ? (
-            <span>Error: {error.message}</span>
+            <div className="flex h-[calc(100dvh-170.44px)] items-center justify-center">
+              <span>Error: {error.message}</span>
+            </div>
           ) : (
-            data.map((pokemon) => (
-              <PokemonCard
-                key={`${pokemon.name} - ${pokemon.id}`}
-                id={pokemon.id}
-                name={pokemon.name}
-              />
-            ))
+            <PokemonCardList pokemon_list={data} />
           )}
         </div>
+        <Pagination
+          page={page}
+          setPage={setPage}
+          MAX_ITEMS_ON_PAGE={MAX_ITEMS_ON_PAGE}
+          total_items={allPokemonNameAndUrlFromPokeApi.pokemons.length}
+        />
       </main>
-      <Pagination page={page} setPage={setPage} MAX_ITEMS_ON_PAGE={MAX_ITEMS_ON_PAGE} total_items={allPokemonNameAndUrlFromPokeApi.pokemons.length}/>
     </div>
   );
 }

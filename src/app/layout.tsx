@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { Header } from "./components/header/header";
 import { QueryClientProviderWrapper } from "./components/query-client-provider-wrapper";
 import "./globals.css";
 
@@ -23,7 +22,6 @@ export default function RootLayout({
     <html lang="pt-BR">
       <body className={poppins.className}>
         <QueryClientProviderWrapper>
-          <Header />
           {children}
         </QueryClientProviderWrapper>
       </body>
