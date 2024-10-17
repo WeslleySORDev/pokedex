@@ -20,7 +20,7 @@ export function Header() {
         </HeadText>
       </div>
       <div className="flex gap-4">
-        <div className="flex w-full items-center gap-2 rounded-2xl bg-grayscale-white py-2 pl-[14px] pr-4 shadow-[inset_0px_2px_2px_rgba(0,_0,_0,_0.14),_inset_0px_3px_1px_rgba(0,_0,_0,_0.12),inset_0px_1px_5px_rgba(0,_0,_0,_0.2)]">
+        <div className="flex w-full items-center gap-2 rounded-2xl bg-grayscale-white py-2 pl-[14px] pr-4 shadow-inner_2dp focus-within:shadow-drop_2dp">
           <Image
             src={SearchIcon}
             width={16}
@@ -33,7 +33,7 @@ export function Header() {
             placeholder="Search"
           />
         </div>
-        <button className="flex items-center justify-center rounded-full bg-grayscale-white p-2 shadow-[inset_0px_2px_2px_rgba(0,_0,_0,_0.14),_inset_0px_3px_1px_rgba(0,_0,_0,_0.12),inset_0px_1px_5px_rgba(0,_0,_0,_0.2)]">
+        <button className="flex items-center justify-center rounded-full bg-grayscale-white p-2 shadow-inner_2dp">
           <div className="h-4 w-4">
             <Image
               className="h-full w-full"

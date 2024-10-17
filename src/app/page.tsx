@@ -41,7 +41,7 @@ export default function Home() {
   return (
     <div className="flex flex-col">
       <main className="max-h-[calc(100dvh-216.44px)] min-h-[calc(100dvh-216.44px)] overflow-y-auto">
-        <div className="mx-1 mb-1 flex flex-wrap place-content-center gap-2 rounded-lg bg-grayscale-white px-3 py-6 shadow-[inset_0px_2px_2px_rgba(0,_0,_0,_0.14),_inset_0px_3px_1px_rgba(0,_0,_0,_0.12),inset_0px_1px_5px_rgba(0,_0,_0,_0.2)]">
+        <div className="mx-1 mb-1 flex flex-wrap place-content-center gap-2 rounded-lg bg-grayscale-white px-3 py-6 shadow-inner_2dp">
           {isPending ? (
             <span>Loading...</span>
           ) : isError ? (
@@ -57,7 +57,7 @@ export default function Home() {
           )}
         </div>
       </main>
-      <Pagination page={page} setPage={setPage} />
+      <Pagination page={page} setPage={setPage} MAX_ITEMS_ON_PAGE={MAX_ITEMS_ON_PAGE} total_items={allPokemonNameAndUrlFromPokeApi.pokemons.length}/>
     </div>
   );
 }

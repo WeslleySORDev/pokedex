@@ -18,7 +18,7 @@ export function PokemonCard({ name, id }: PokemonCardProps) {
   return (
     <Link
       href={`/pokemon/${name}`}
-      className="relative flex h-[108px] w-[104px] flex-col rounded-lg shadow-[0px_2px_2px_rgba(0,_0,_0,_0.14),_0px_3px_1px_rgba(0,_0,_0,_0.12),_0px_1px_5px_rgba(0,_0,_0,_0.2)]"
+      className="relative flex h-[108px] w-[104px] flex-col rounded-lg shadow-drop_2dp"
     >
       <BodyText as="caption" className="absolute right-2 top-1">
         #{stringFormatedID()}
