@@ -26,10 +26,11 @@ export function PokemonCard({ name, id }: PokemonCardProps) {
       <div className="relative mt-auto flex rounded-[7px] bg-grayscale-background">
         <Image
           alt={`Imagem do pokemon - ${name}`}
-          className="absolute bottom-6 left-1/2 h-[72px] w-[72px] -translate-x-1/2"
+          className="absolute bottom-6 left-1/2 h-[72px] w-[72px] lg:h-[128px] lg:w-[128px] -translate-x-1/2"
           src={`/assets/pokemon/images/${stringFormatedID()}.png`}
           width={72}
           height={72}
+          unoptimized
         />
 
         <BodyText

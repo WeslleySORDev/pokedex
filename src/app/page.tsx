@@ -9,7 +9,7 @@ import { Pagination } from "./components/home-page/pagination";
 import { PokemonCardList } from "./components/home-page/pokemon-card-list";
 import { Header } from "./components/header/header";
 
-const MAX_ITEMS_ON_PAGE = 20;
+const MAX_ITEMS_ON_PAGE = 50;
 // <PokemonType as={pokemon.types[0].type.name} key={pokemon.id}>{pokemon.types[0].type.name}</PokemonType>
 
 export default function Home() {
@@ -40,16 +40,16 @@ export default function Home() {
   };
 
   return (
-    <div className="mx-auto flex max-w-screen-md lg:max-w-screen-lg flex-col rounded bg-primary p-1">
+    <div className="mx-auto flex max-w-screen-md flex-col rounded bg-primary p-1 lg:max-w-screen-lg">
       <Header />
       <main className="flex flex-col">
-        <div className="max-h-[calc(100dvh-170.44px)] min-h-[calc(100dvh-170.44px)] overflow-y-auto rounded-lg bg-grayscale-white px-3 py-6 shadow-inner_2dp">
+        <div className="max-h-[calc(100dvh-170.44px)] min-h-[calc(100dvh-170.44px)] overflow-y-auto rounded-lg bg-grayscale-white px-3 py-6 shadow-inner_2dp lg:max-h-[calc(100dvh-176px)] lg:min-h-[calc(100dvh-176px)]">
           {isPending ? (
-            <div className="flex h-[calc(100dvh-170.44px)] items-center justify-center">
+            <div className="flex h-[calc(100dvh-170.44px)] items-center justify-center lg:h-[calc(100dvh-176px)]">
               <span>Loading...</span>
             </div>
           ) : isError ? (
-            <div className="flex h-[calc(100dvh-170.44px)] items-center justify-center">
+            <div className="flex h-[calc(100dvh-170.44px)] items-center justify-center lg:h-[calc(100dvh-176px)]">
               <span>Error: {error.message}</span>
             </div>
           ) : (
