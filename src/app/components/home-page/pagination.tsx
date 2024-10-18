@@ -77,7 +77,7 @@ export function Pagination({
           onBlur={handleBlur}
           min={1}
           max={pages}
-          className="h-8 w-8 rounded-sm bg-grayscale-white text-center text-primary"
+          className="h-8 w-8 rounded-sm bg-grayscale-white text-center text-primary [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
         />
         <span>of {pages}</span>
       </li>

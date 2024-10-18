@@ -40,7 +40,7 @@ export default function Home() {
   };
 
   return (
-    <div className="mx-auto flex max-w-screen-md flex-col rounded p-1">
+    <div className="mx-auto flex max-w-screen-md flex-col rounded p-1 bg-primary">
       <Header />
       <main className="flex flex-col">
         <div className="max-h-[calc(100dvh-170.44px)] overflow-y-auto rounded-lg bg-grayscale-white px-3 py-6 shadow-inner_2dp">

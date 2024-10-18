@@ -4,6 +4,6 @@
 
 @layer components {
     body {
-        @apply bg-primary min-h-dvh w-dvw
+        @apply min-h-dvh w-dvw bg-[url('/assets/background.png')] bg-center backdrop-blur-[2px]
     }
 }
