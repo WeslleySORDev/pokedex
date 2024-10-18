@@ -14,10 +14,10 @@ const HeadText: React.FC<HeadTextProps> = ({
 }) => {
   const headTextClass = clsx(
     {
-      "text-[24px] leading-[32px]": as === "headline",
-      "text-[14px] leading-[16px]": as === "subtitle-1",
-      "text-[12px] leading-[16px]": as === "subtitle-2",
-      "text-[10px] leading-[16px]": as === "subtitle-3",
+      "text-[24px] leading-[32px] lg:text-[26px]": as === "headline",
+      "text-[14px] leading-[16px] lg:text-[16px]": as === "subtitle-1",
+      "text-[12px] leading-[16px] lg:text-[14px]": as === "subtitle-2",
+      "text-[10px] leading-[16px] lg:text-[12px]": as === "subtitle-3",
     },
     className,
   );

@@ -40,10 +40,10 @@ export default function Home() {
   };
 
   return (
-    <div className="mx-auto flex max-w-screen-md flex-col rounded p-1 bg-primary">
+    <div className="mx-auto flex max-w-screen-md lg:max-w-screen-lg flex-col rounded bg-primary p-1">
       <Header />
       <main className="flex flex-col">
-        <div className="max-h-[calc(100dvh-170.44px)] overflow-y-auto rounded-lg bg-grayscale-white px-3 py-6 shadow-inner_2dp">
+        <div className="max-h-[calc(100dvh-170.44px)] min-h-[calc(100dvh-170.44px)] overflow-y-auto rounded-lg bg-grayscale-white px-3 py-6 shadow-inner_2dp">
           {isPending ? (
             <div className="flex h-[calc(100dvh-170.44px)] items-center justify-center">
               <span>Loading...</span>

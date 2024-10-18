@@ -10,6 +10,7 @@ export function Header() {
     <header className="flex flex-col gap-2 px-3 pb-6 pt-4">
       <div className="flex items-center gap-4">
         <Image
+          className="lg:w-7 lg:h-7"
           src={PokeballIcon}
           width={24}
           height={24}
@@ -28,13 +29,13 @@ export function Header() {
             alt="Search Icon SVG"
           />
           <input
-            className="w-full text-[10px] leading-[16px] text-grayscale-medium outline-none"
+            className="w-full text-[10px] leading-[16px] lg:text-base text-grayscale-medium outline-none"
             type="text"
             placeholder="Search"
           />
         </div>
-        <button className="flex items-center justify-center rounded-full bg-grayscale-white p-2 shadow-inner_2dp">
-          <div className="h-4 w-4">
+        <button className="flex items-center justify-center rounded-full bg-grayscale-white p-2 p-3 shadow-inner_2dp">
+          <div className="h-4 w-4 lg:w-6 lg:h-6">
             <Image
               className="h-full w-full"
               src={SortIcon}

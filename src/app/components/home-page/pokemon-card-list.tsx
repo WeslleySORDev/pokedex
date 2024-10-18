@@ -6,7 +6,7 @@ type PokemonCardListType = {
 
 export function PokemonCardList({ pokemon_list }: PokemonCardListType) {
   return (
-    <div className="place-items-center grid grid-cols-2 sm:grid-cols-3 gap-2">
+    <div className="place-items-center grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
       {pokemon_list.map((pokemon) => (
         <PokemonCard
           key={`${pokemon.name} - ${pokemon.id}`}
