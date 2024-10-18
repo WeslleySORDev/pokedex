@@ -1,13 +1,12 @@
 "use client";
-import { useState } from "react";
-import { split_array_into_chunks } from "./utils/array";
-import allPokemonNameAndUrlFromPokeApi from "./utils/all-pokemon-name-and-url-from-poke-api.json";
-import { instance } from "./services/axios";
+import { useEffect, useState } from "react";
+import { split_array_into_chunks } from "../utils/array";
+import allPokemonNameAndUrlFromPokeApi from "../utils/all-pokemon-name-and-url-from-poke-api.json";
+import { instance } from "../services/axios";
 import { useQuery } from "@tanstack/react-query";
-import { PokemonCard } from "./components/home-page/pokemon-card";
-import { Pagination } from "./components/home-page/pagination";
-import { PokemonCardList } from "./components/home-page/pokemon-card-list";
-import { Header } from "./components/header/header";
+import { Pagination } from "../components/home-page/pagination";
+import { PokemonCardList } from "../components/home-page/pokemon-card-list";
+import { Header } from "../components/header/header";
 
 const MAX_ITEMS_ON_PAGE = 50;
 // <PokemonType as={pokemon.types[0].type.name} key={pokemon.id}>{pokemon.types[0].type.name}</PokemonType>
@@ -38,7 +37,6 @@ export default function Home() {
     );
     return results;
   };
-
   return (
     <div className="mx-auto flex max-w-screen-md flex-col rounded bg-primary p-1 lg:max-w-screen-lg">
       <Header />

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import { QueryClientProviderWrapper } from "./components/query-client-provider-wrapper";
+import { QueryClientProviderWrapper } from "../components/query-client-provider-wrapper";
 import "./globals.css";
 
 const poppins = Poppins({
