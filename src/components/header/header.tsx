@@ -1,9 +1,9 @@
 import HeadText from "../ui/head-text";
 import Image from "next/image";
 
-import PokeballIcon from "../../../../public/assets/icons/pokeball-icon.svg";
-import SearchIcon from "../../../../public/assets/icons/search-icon.svg";
-import SortIcon from "../../../../public/assets/icons/sort-icon.svg";
+import PokeballIcon from "../../../public/assets/icons/pokeball-icon.svg";
+import SearchIcon from "../../../public/assets/icons/search-icon.svg";
+import SortIcon from "../../../public/assets/icons/sort-icon.svg";
 
 export function Header() {
   return (

@@ -1,7 +1,7 @@
 import { PokemonCard } from "./pokemon-card";
 
 type PokemonCardListType = {
-  pokemon_list: any[];
+  pokemon_list: any;
 };
 
 export function PokemonCardList({ pokemon_list }: PokemonCardListType) {
