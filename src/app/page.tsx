@@ -13,10 +13,7 @@ export default function Home() {
   const [pokemons, setPokemons] = useState();
   const updatePokemons = async () => {
     const data = await fetch(
-      `/api/pokemons?itemsPerPage=${MAX_ITEMS_ON_PAGE}&currentPage=${currentPage}`,
-      {
-        cache: "force-cache", // Apenas se necessário
-      },
+      `/api/pokemons?itemsPerPage=${MAX_ITEMS_ON_PAGE}&currentPage=${currentPage}`
     ).then((response) => response.json());
     console.log(data)
     setPokemons(data);
