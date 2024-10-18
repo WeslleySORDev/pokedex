@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-    body {
-        @apply min-h-dvh w-dvw bg-[url('/assets/background.png')] bg-center backdrop-blur-[2px]
-    }
+  body {
+    @apply min-h-dvh w-dvw overflow-hidden bg-[url('/assets/background.png')] bg-center backdrop-blur-[2px];
+  }
 }

@@ -34,7 +34,7 @@ export function Header() {
             placeholder="Search"
           />
         </div>
-        <button className="flex items-center justify-center rounded-full bg-grayscale-white p-2 p-3 shadow-inner_2dp">
+        <button className="flex items-center justify-center rounded-full bg-grayscale-white p-2 shadow-inner_2dp">
           <div className="h-4 w-4 lg:w-6 lg:h-6">
             <Image
               className="h-full w-full"
