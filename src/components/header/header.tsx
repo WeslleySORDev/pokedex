@@ -9,7 +9,7 @@ import { Dispatch, SetStateAction } from "react";
 
 type HeaderType = {
   filter: string;
-  sort: "name" | "id";
+  sort: "id" | "name";
   setFilter: Dispatch<SetStateAction<string>>;
   setSort: Dispatch<SetStateAction<"id" | "name">>;
 };

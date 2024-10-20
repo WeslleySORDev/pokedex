@@ -1,59 +1,78 @@
 import { NextRequest } from "next/server";
 import { split_array_into_chunks } from "@/utils/array";
-
-const fetchPokemonsByPage = async (
-  page: number,
-  itemsPerPage: number,
-  splited_names_in_chunks: string[][],
-) => {
-  const promiseArray = splited_names_in_chunks[page - 1].map((pokemon) =>
-    fetch("https://pokeapi.co/api/v2/pokemon/" + pokemon, {
-      next: { revalidate: 3600 },
-    }).then((response) => response.json()),
-  );
-  const results = await Promise.allSettled(promiseArray).then((values) => {
-    const fulfilledResults = values
-      .filter((value) => value.status === "fulfilled")
-      .map((value) => (value as PromiseFulfilledResult<any>).value);
-    return fulfilledResults;
-  });
-  return {
-    results: results,
-    amount_pokemons: splited_names_in_chunks.length * itemsPerPage,
-  };
-};
+import { fetchPokemons } from "@/utils/functions";
 
 export async function GET(request: NextRequest) {
   const { searchParams } = request.nextUrl;
 
+  console.time("Total Execution Time");
+
+  console.time("Initial Param Parsing");
   const currentPage = searchParams?.get("currentPage") || "1";
   const itemsPerPage = searchParams?.get("itemsPerPage") || "10";
-  const filter = searchParams?.get("filter")?.toLowerCase() || "";
   const sort = searchParams?.get("sort") || "name";
+  const filter = searchParams?.get("filter")?.toLowerCase() || "";
+  console.timeEnd("Initial Param Parsing");
 
-  const data = await fetch(
+  console.time("Fetch Pokemon Data");
+  const pokemons_url_and_name = await fetch(
     "https://pokeapi.co/api/v2/pokemon/?offset=0&limit=905",
     { next: { revalidate: 3600 } },
   ).then((response) => response.json());
-  const names = data.results.map(
+  console.timeEnd("Fetch Pokemon Data");
+
+  console.time("Map Pokemon Names");
+  const pokemons_name = pokemons_url_and_name.results.map(
     (result: { name: string; url: string }) => result.name,
   );
-  let filtered_names = names;
+  console.timeEnd("Map Pokemon Names");
+
+  console.time("Filter Names");
+  let filtered_names = pokemons_name;
   if (filter) {
-    filtered_names = names.filter((name: string) =>
+    filtered_names = pokemons_name.filter((name: string) =>
       name.toLowerCase().includes(filter),
     );
   }
-  const splited_names_in_chunks = split_array_into_chunks(
-    filtered_names,
-    parseInt(itemsPerPage),
-  );
-  const pokemons = await fetchPokemonsByPage(
-    parseInt(currentPage),
-    parseInt(itemsPerPage),
-    splited_names_in_chunks,
-  );
-  return new Response(JSON.stringify(pokemons), {
+  console.timeEnd("Filter Names");
+
+  console.time("Sort Names");
+  if (sort === "name") {
+    filtered_names.sort((a: string, b: string) => (a > b ? 1 : -1));
+  } else if (sort === "id") {
+    filtered_names.sort(
+      (a: string, b: string) =>
+        filtered_names.indexOf(a) - filtered_names.indexOf(b),
+    );
+  }
+  console.timeEnd("Sort Names");
+
+  if (filtered_names.length > 0) {
+    console.time("Split Names into Chunks");
+    const splited_names_in_chunks = split_array_into_chunks(
+      filtered_names,
+      parseInt(itemsPerPage),
+    );
+    console.timeEnd("Split Names into Chunks");
+
+    console.time("Fetch Pokemon Details");
+    const pokemons = await fetchPokemons(
+      parseInt(currentPage),
+      splited_names_in_chunks,
+    );
+    console.timeEnd("Fetch Pokemon Details");
+
+    console.timeEnd("Total Execution Time");
+
+    return new Response(JSON.stringify(pokemons), {
+      headers: { "content-type": "application/json" },
+      status: 201,
+    });
+  }
+
+  console.timeEnd("Total Execution Time");
+
+  return new Response(JSON.stringify([]), {
     headers: { "content-type": "application/json" },
     status: 201,
   });

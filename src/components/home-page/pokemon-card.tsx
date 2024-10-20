@@ -31,6 +31,7 @@ export function PokemonCard({ name, id }: PokemonCardProps) {
           width={72}
           height={72}
           unoptimized
+          loading="lazy"
         />
 
         <BodyText
