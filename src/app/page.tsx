@@ -9,22 +9,22 @@ const MAX_ITEMS_ON_PAGE = 50;
 
 export default function Home() {
   const [filter, setFilter] = useState("");
+  const [sort, setSort] = useState<"name" | "id">("name");
   const [currentPage, setCurrentPage] = useState(1);
   const [pokemons, setPokemons] = useState();
   const updatePokemons = async () => {
     const data = await fetch(
-      `/api/pokemons?itemsPerPage=${MAX_ITEMS_ON_PAGE}&currentPage=${currentPage}`
+      `/api/pokemons?itemsPerPage=${MAX_ITEMS_ON_PAGE}&currentPage=${currentPage}`,
     ).then((response) => response.json());
-    console.log(data)
     setPokemons(data);
   };
   useEffect(() => {
     updatePokemons();
-  }, [currentPage]);
+  }, [currentPage, sort]);
   if (!pokemons) return <h1>Carregando</h1>;
   return (
     <div className="mx-auto flex max-w-screen-md flex-col rounded bg-primary p-1 lg:max-w-screen-lg">
-      <Header />
+      <Header filter={filter} setFilter={setFilter} setSort={setSort} sort={sort}/>
       <main className="flex flex-col">
         <div className="max-h-[calc(100dvh-170.44px)] min-h-[calc(100dvh-170.44px)] overflow-y-auto rounded-lg bg-grayscale-white px-3 py-6 shadow-inner_2dp lg:max-h-[calc(100dvh-176px)] lg:min-h-[calc(100dvh-176px)]">
           <PokemonCardList pokemon_list={pokemons.results} />
